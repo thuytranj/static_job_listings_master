@@ -4,4 +4,5 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
   ],
+  base: "/static_job_listings_master",
 })
