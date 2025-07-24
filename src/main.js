@@ -1,29 +1,14 @@
 import './style.css'
 import javascriptLogo from './javascript.svg'
 import viteLogo from '/vite.svg'
+import jobList from './data.json'
 
+const base = import.meta.env.BASE_URL; 
 const background = document.getElementById('background');
 const app = document.getElementById('job-listings');
 const filterContainer = document.getElementById('filter-container');
 const filterTagsContainer = document.getElementById('filter-tags-container');
 let filterTags = [];
-
-async function getJobList() {
-    try {
-        const response = await fetch('data.json');
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-
-        const data = await response.json();
-        return data;
-    }
-    catch (error) {
-        console.error('Error fetching job list:', error);
-    }
-}
-
-const jobList = await getJobList();
 console.log(jobList);
 
 function showJob(job) {
@@ -34,7 +19,7 @@ function showJob(job) {
   jobEle.style.borderLeftColor = featured ? 'var(--color-green-400)' : 'transparent';
 
   jobEle.innerHTML = `
-      <img src="${logo}" alt="avartar" class="w-15 h-15 rounded-full"> 
+      <img src="${base}${logo}" alt="avartar" class="w-15 h-15 rounded-full"> 
 
       <div class="flex flex-col gap-1.5">
         <div class="flex gap-3 items-center" id="job-info">
